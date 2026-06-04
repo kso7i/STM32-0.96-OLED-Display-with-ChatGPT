@@ -12,29 +12,18 @@
 
 ---
 
-## 需要的软件工具
 
-* Keil MDK
-* STM32CubeMX
-* CH340 驱动，USB 串口驱动，可选
-* ST-LINK 驱动，可选
-* DAP-Link 下载器不需要额外安装驱动
-
----
 
 ## 需要的硬件实物
 
-* STM32F103C8T6 开发板
 * 0.96 英寸 OLED 屏幕，I2C 接口
-* DAP-Link 或 ST-LINK 下载器
-* 杜邦线若干
-* USB 数据线
+
 
 ---
 
 ## OLED 驱动文件说明
 
-本实验需要使用以下 3 个文件：
+本实验需要使用以下 3 个文件：已经打包在仓库请自行下载
 
 ```text
 OLED.c
@@ -83,108 +72,14 @@ SDA
 
 ## STM32CubeMX 配置步骤
 
-### 1. 新建工程
 
-打开 STM32CubeMX，选择芯片：
 
-```text
-STM32F103C8T6
-```
 
-### 2. 配置调试接口
-
-进入：
-
-```text
-System Core → SYS
-```
-
-将 Debug 设置为：
-
-```text
-Serial Wire
-```
-
-这样可以使用 ST-LINK 或 DAP-Link 通过 SWD 下载程序。
-
-### 3. 配置 OLED 引脚
-
-将 PA8 配置为 GPIO_Output：
-
-```text
-PA8 → GPIO_Output
-```
-
-将 PA9 配置为 GPIO_Output：
-
-```text
-PA9 → GPIO_Output
-```
-
-建议参数：
-
-```text
-GPIO mode: Output Open Drain
-GPIO Pull-up/Pull-down: Pull-up 或 No pull-up and no pull-down
-Maximum output speed: High
-```
-
-如果 OLED 模块本身带上拉电阻，`No pull-up and no pull-down` 通常也可以。
-
-### 4. 配置时钟
-
-如果使用 STM32F103C8T6 最小系统板，可以使用默认时钟，也可以配置为 72MHz。
-
-初学阶段如果只是点亮 OLED，默认时钟也可以正常使用。
-
-### 5. 生成 Keil 工程
-
-进入：
-
-```text
-Project Manager
-```
-
-设置：
-
-```text
-Toolchain / IDE: MDK-ARM
-```
-
-然后点击：
-
-```text
-Generate Code
-```
-
----
-
-## 导入 OLED 驱动文件
+## Keli中导入 OLED 驱动文件
 
 将文件放到工程目录中：
 
-```text
-OLED.h
-OLED_Font.h
-```
-
-放到：
-
-```text
-Core/Inc
-```
-
-将：
-
-```text
-OLED.c
-```
-
-放到：
-
-```text
-Core/Src
-```
+ 
 
 目录结构大致如下：
 
